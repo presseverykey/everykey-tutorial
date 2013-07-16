@@ -53,5 +53,27 @@ Unzip the downloaded package and add the compiler to your `PATH`, make the progr
     $ export PATH=$PATH:`pwd`/GNU\ Tools\ ARM\ Embedded/4.7\ 2013q2/bin
     $ chmod +x GNU\ Tools\ ARM\ Embedded/4.7\ 2013q2/bin
     $ arm-none-eabi-gcc
-    
+    $ arm-none-eabi-gcc
+    arm-none-eabi-gcc.exe: fatal error: no input files
+    compilation terminated.
+
 And you should get an error message saying you didn't provide an input file.
+
+## If you're still not fed up with using Windows ...
+
+Ok, now for our dirty secret: we've used symbolic links in our examples and windows isn't too happy with those. Anytime we used symlinks, you'll need to actually copy the linked directory. Here's an exmaple:
+
+Go back into the SDK directory where you checkout out our stuff from there into the `examples/blink` directory. A directory listing will show a lot of symbolic links:
+
+    a2800276@windowsxp ~/anykey-sdk/examples/blink
+    $ ls -l
+    total 9
+    lrwxrwxrwx 1 a2800276 None   12 Jul 16 18:23 anykey -> ../../anykey
+    lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 anypio.c -> ../../libs/anypio/anypio.c
+    lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 anypio.h -> ../../libs/anypio/anypio.h  
+    lrwxrwxrwx 1 a2800276 None   23 Jul 16 18:23 lpc1343.ld -> ../../anykey/lpc1343.ld
+    -rw-r--r-- 1 a2800276 None 3207 Jul 16 18:23 main.c
+    lrwxrwxrwx 1 a2800276 None   21 Jul 16 18:23 makefile -> ../../anykey/makefile
+
+
+
