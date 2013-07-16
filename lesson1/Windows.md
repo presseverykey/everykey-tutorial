@@ -38,26 +38,11 @@ Switch into the sdk directory, then to the `checksum` subdirectory and run `make
 
 Finally, you'll need to install the ARM compiler (the gcc installed was only necessary to compile the `checksum` program.
 
-Make a directory for the compiler:
+Head to https://launchpad.net/gcc-arm-embedded/+download find the link to the download called "Windows Installer" Package". Copy that link and download it using `wget`
 
-    $ mkdir compiler
-    $ cd compiler
+Run the installer and MAKE SURE you tick the "add path to environment variable" box.
 
-Head to https://launchpad.net/gcc-arm-embedded/+download find the link to the download called "Windows Zip Package". Copy that link and download it using `wget`
-
-    $ wget --no-check-certificate https://launchpad.net/gcc-arm-embedded/4.7/4.7-2013-q2-update/+download/gcc-arm-none-eabi-4_7-2013q2-20130614-win32.zip
-    
-Unzip the downloaded package and add the compiler to your `PATH`, make the programs executable, and make sure they'll run:
-
-    $ unzip gcc-arm-none-eabi-4_7-2013q2-20130614-win32.zip
-    $ export PATH=$PATH:`pwd`/GNU\ Tools\ ARM\ Embedded/4.7\ 2013q2/bin
-    $ chmod +x GNU\ Tools\ ARM\ Embedded/4.7\ 2013q2/bin
-    $ arm-none-eabi-gcc
-    $ arm-none-eabi-gcc
-    arm-none-eabi-gcc.exe: fatal error: no input files
-    compilation terminated.
-
-And you should get an error message saying you didn't provide an input file.
+![](https://raw.github.com/anykey0xde/tutorial/master/img/win-arm-installer.png)
 
 ## If you're still not fed up with using Windows ...
 
@@ -74,6 +59,18 @@ Go back into the SDK directory where you checkout out our stuff from there into 
     lrwxrwxrwx 1 a2800276 None   23 Jul 16 18:23 lpc1343.ld -> ../../anykey/lpc1343.ld
     -rw-r--r-- 1 a2800276 None 3207 Jul 16 18:23 main.c
     lrwxrwxrwx 1 a2800276 None   21 Jul 16 18:23 makefile -> ../../anykey/makefile
+
+delete them and copy the originals in their place:
+
+    $ rm anykey
+    $ cp -r ../../anykey .
+    $ rm anypio.*
+    $ cp ../../libs/anypio.* .
+    ...
+    
+and you're set to go... type `make`
+
+    $ make
 
 
 
