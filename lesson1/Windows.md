@@ -16,7 +16,6 @@ Run the installer and make sure you install the following packages:
 * git
 * make
 * gcc
-* wget
 * unzip
 
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.gcc.png)
@@ -27,12 +26,16 @@ Next start cygwin:
 
 and check out the anykey-sdk repository:
 
-    git clone https://github.com/anykey0xde/anykey-sdk.git
+    $ git clone https://github.com/anykey0xde/anykey-sdk.git
 
 Switch into the sdk directory, then to the `checksum` subdirectory and run `make`
 
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.step1.png)
 
+Finally, you need to add the checksum directory to your `$PATH` variable so it can be found:
+
+    a2800276@windowsxp ~/anykey-sdk/checksum
+    $ export PATH=$PATH:`pwd`
 
 ## Install the ARM compiler
 
@@ -67,10 +70,23 @@ delete them and copy the originals in their place:
     $ rm anypio.*
     $ cp ../../libs/anypio.* .
     ...
-    
+
+When you're done, the directory should look like this:
+
+    $ ls -l
+    total 20
+    drwxr-xr-x+ 1 a2800276 None    0 Jul 16 19:34 anykey
+    -rw-r--r--  1 a2800276 None 2319 Jul 16 19:00 anypio.c
+    -rw-r--r--  1 a2800276 None 2495 Jul 16 19:00 anypio.h
+    -rw-r--r--  1 a2800276 None 2183 Jul 16 19:31 lpc1343.ld
+    -rw-r--r--  1 a2800276 None 3207 Jul 16 18:23 main.c
+    -rw-r--r--  1 a2800276 None 1619 Jul 16 19:34 makefile
+
+
+
 and you're set to go... type `make`
 
     $ make
 
-
+BTW: We're not happy with all the deleting and copying either to deal with symlinks under Windows and would be happy to accept a solution to deal with this ...
 
