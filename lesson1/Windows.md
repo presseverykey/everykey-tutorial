@@ -8,3 +8,4 @@ the checksum in the generated firmware (don't worry if you don't know
 what this means.. :)
 
 Go to [http://cygwin.com/intall.html] and download the `setup.exe`
+![](https://raw.github.com/anykey0xde/tutorial/master/img/download_cygwin.png)
