@@ -80,7 +80,8 @@ button, press the RESET button and release the PROGRAM button. The LED
 should now glow softly and you will see a driver called `CRP DISABLED`
 in the Finder.
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_button.png)
+![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
+
 
 Running `make mac-install` will copy the firmware to the Anykey and
 unmount it. Now press RESET again to exit programming mode and the LED
