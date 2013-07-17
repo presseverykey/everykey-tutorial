@@ -35,13 +35,13 @@ and add the `bin` directory to your `$PATH` variable:
     $ export PATH=$PATH:`pwd`/gcc-arm-none-eabi-4_7-2013q2/arm-none-eabi/bin/
 
 You'll need to edit the $PATH variable everytime you start a new
-console, consider adding the PATH adjustment to your `.profile` ... 
+console, consider adding the PATH adjustment to your `.profile`
 
 You may need to change the commands above in case you're using a newer
 version of the tools and the files aren't called
 `gcc-arm-none-eabi-4_7-2013q2-20130614`
 
-## Checkout out the SDK
+## Check out out the SDK
 
 Create a convenient working directory and check out the SDK
 
