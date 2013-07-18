@@ -30,238 +30,15 @@ user manual before, this will see very intimidating and you probably
 won't understand most of what you read, don't worry about it for now,
 things will start making sense.
 
-## Some Theory: Bits, bytes, nibbles, binary, hex & co.
-
-Since the low-level configuration of a microcontroller involves dealing
-with bits and bytes, we'd like to provide a short introduction of how to
-deal with low levl data structures.
-
-The basic unit of memory in almost all microcontrollers is a byte which
-consists of 8 bits. Each bit can be 1 or 0, so one bit can represent two
-values (0 and 1), 2 bits can represent 4 values ( 00, 01, 10 & 11), 3
-bits 8 values and so one. In short X number of bits can represent 2^X
-different values (2 * 2 * 2 * ... ) <- repeat X times. A byte (8 bits)
-can represent 256 different values.
-
-These different values are usually interpreted as numbers:
-
-    bit#:    7 | 6 | 5 | 4 | 3 | 2 | 1 | 0
-    value:  127| 64| 32| 16| 8 | 4 | 2 | 1
-
-Each bit is assigned a value, above and in order to translate from bit
-values to number values, you just need to add up all the values in the
-positions where a bit is set to 1.
-    
-
-    bit#     :   7 |  6 |  5 |  4 |  3 |  2 | 1 | 0
-    num value:  127| 64 | 32 | 16 |  8 |  4 | 2 | 1
-    bit value:   0 |  0 |  0 |  0 |  0 |  0 | 0 | 0
-
-A byte consisting of all zero's like above has the value 0. If a single
-bit is set:
-
-    bit#     :   7 |  6 |  5 |  4 |  3 |  2 | 1 | 0
-    num value:  127| 64 | 32 | 16 |  8 |  4 | 2 | 1
-    bit value:   0 |  0 |  0 |  1 |  0 |  0 | 0 | 0
-
-The value of the byte corresponds to the value of the set bit (16 in the
-example above). If several bits are set to one:
-
-
-    bit#     :   7 |  6 |  5 |  4 |  3 |  2 | 1 | 0
-    num value:  127| 64 | 32 | 16 |  8 |  4 | 2 | 1
-    bit value:   0 |  0 |  0 |  1 |  0 |  1 | 1 | 1
-
-The value of the byte is the sum of the values corresponding to the set
-bits. In the example above: 16 + 4 + 2 + 1 = 23;
-
-If all bits are set, the value is 127 + 64 + 32 + 16 + 8 + 4 + 2 + 1 =
-256.
-
-To represent larger values you can use values cnosisting of more than
-one byte.
-
-It's important to remember, though that this mapping of bits to numbers
-is just an arbitray convention. A byte just represents 256 different
-values, whether these values represent the number 0-255 or 256 different
-colors is irrelevant. E.g. when configuring a microcontroller, the eight
-bits in a byte are mapped to pins and each bit indicates whether a pin
-is turned on or off. Another common thing that a series of (32 on our
-processor) bits can represent are locations in memory.
-
-### Signed and unsigned
-
-Also a byte doesn't necessarily have to represent
-the values 0-255, it could also be configured as a "signed" type,
-representing the numbers -128 to 127. C defines "types" which are meant
-to indicate what a series of bits is supposed to represent, e.g. uint8_t
-is a type ("_t") that is unsigned ("u") representing a number ("int")
-that is 8 bits long.
-    
-    |  Type     |  Description        |             Values                |
-    |-----------|---------------------|-----------------------------------|
-    | uint8_t   | unsigned 8 bit type |           0 ... 255               |
-    |  int8_t   | signed 8 bit type   |         -128 ... 127              |
-    | uint16_t  | unsigned 16 bit     |          0 ... 65,535             |
-    |  int116_t | signed 16 bit       |        −32,768 ... 32,767         |
-    | uint32_t  | unsigned 32 bit     |        0 ... 4,294,967,295        |
-    |  int32_t  | signed 32 bit type  |  −2,147,483,648 ... 2,147,483,647 |
-
-and so on... Basically a signed value can represent the values:
-
-    -(2^ (number of bits - 1) ... (2 ^ (number of bits-1) ) - 1
-
-Unsigned values can represent values form:
-
-    0 ... (2 ^ (number of bits -1)) - 1
-
-
-### Math (ugh)
-
-When a type represents a number, we can perform mathematical operations
-with it, using the operators (+, -, *, /) the star is the multiplication
-operator and the slash division.
-
-### Logical Operation : Enough math, using values as a series of bits.
-
-Another class of operations that can be perform with values are
-"logical" operations:
-
-    | Operation  |  Operator |  Name        | Description                                |
-    |------------|-----------|--------------|--------------------------------------------|
-    |  AND       |  &        | logical and  | equals 1 if both values are one            |
-    |  OR        |  \|       | logical or   | equals 1 if either value is one            |
-    |  XOR       |  ^        | exclusive or | equals 1 if one of the values is one       |
-    |  NOT       |  ~        | negation     | equals 1 if value is 0 and 0 if value is 1 |
-    | SHIFT LEFT |  <<       | shift        | move the entire value left, filling up the new spaces with 0's|
-    | SHIFT RIGHT|  >>       | shift        |  ...                                       |
-
-You probably either know the table above, or it's not particularly
-helpful, some examples:
-
-     AND two bytes together
-     (result = 3 & 137)
-     
-     bit num: 7 6 5 4  3 2 1 0
-     -------------------------
-     byte 1 : 0 0 0 0  1 0 0 0
-     byte 2 : 1 0 0 0  1 0 0 1
-     -------------------------
-     result : 0 0 0 0  1 0 0 0
-
-Since only both the bits at position 3 are set to one, that is the only
-bit set in the result.
-
-     OR two bytes together
-     ( result = 6 | 172 )
-
-     bit num: 7 6 5 4  3 2 1 0
-     -------------------------
-     byte 1 : 0 0 0 0  1 1 0 1
-     byte 2 : 1 0 1 0  1 1 0 0
-     -------------------------
-     result : 1 0 1 0  1 1 0 1
-
-Since one of each bits in position 7, 5, 3, 2 and 0 are set, those are
-the bits set in the result.
-
-
-     XOR two bytes together
-     (result = 5 ^ 173)
-
-     bit num: 7 6 5 4  3 2 1 0
-     -------------------------
-     byte 1 : 0 0 0 0  1 1 0 0
-     byte 2 : 1 0 1 0  1 1 0 1
-     -------------------------
-     result : 1 0 1 0  0 0 0 1
-
-For xor, only the bits in the result are set that correspond to bits
-set EITHER in the first or second operant. Positions 3 and 2 where the
-bits are set in BOTH operants are not set in the result.
-
-    NOT works with only one operand 
-    (result = ~5)
-    
-    bit num: 7 6 5 4  3 2 1 0
-    -------------------------
-    byte 1 : 0 0 0 0  1 1 0 0
-    -------------------------
-    result : 1 1 1 1  0 0 1 1
-
-Finally shift:
-
-    SHIFT left by 1 
-    ( result = 5 << 1 )
-
-    bit num: 7 6 5 4  3 2 1 0
-    -------------------------
-    byte 1 : 0 0 0 0  1 1 0 0
-    -------------------------
-    result : 0 0 0 1  1 0 0 0
-
-
-    SHIFT right by 2 
-    ( result = 5 >> 2 )
-
-    bit num: 7 6 5 4  3 2 1 0
-    -------------------------
-    byte 1 : 0 0 0 0  1 1 0 0
-    -------------------------
-    result : 0 0 0 0  0 0 1 1
-
-
-### Logical Operation Cookbook
-
-Why would you use these logical operations? On the one hand, these are
-the basic opertions that a computer can perform internally on electrical
-signals passing through transistor. You can use these operations for
-some mathematical trickery, e.g. shifting by one is the same as
-multiplying or dividing by two (try it ...).
-
-But for our typical purposes we would like to be able to set the values of
-individual bits and to check how individual bits are set. Below are
-common patterns to do this, we won't elaborate on them, try these out
-yourself
-
-#### Setting a bit (to 1)
-
-    value = value | ( 1 << bit_num)
-
-
-    Set bit 4
-
-    bit num: 7 6 5 4  3 2 1 0
-    -------------------------
-    byte 1 : 0 0 0 0  1 1 0 0
-    1<<4   : 0 0 0 1  0 0 0 0
-    -------------------------
-    result : 0 0 0 1  1 1 0 0
-
-
-#### Clearing a bit (set to 0)
-
-    value = value | ~( 1 << bit_num)
-
-
-    Set bit 4
-
-    bit num: 7 6 5 4  3 2 1 0
-    -------------------------
-    byte 1 : 0 0 0 1  1 1 0 0
-    ~(1<<4): 1 1 1 0  1 1 0 0
-    -------------------------
-    result : 0 0 0 0  1 1 0 0
-
-
-#### Check if a bit is set
-
-    is_set = (1 << bit_num) == (value & (1 << bit_num))
 
 Configuring a microcontroller usually involves writing to a memory
 location and manipulating values. These memory locations are accessed
 just like normal RAM memory, but they are not connected to RAM, but
 instead to physical peripherals of the chip (just pins for now...)
+
+If you're not familiar with bit operation, binary numbers and
+hexadecimal, please read the bits_bytes_and_nibbles.md chapter to brush
+up...
 
 The physical pins on the Anykey are organized into 4 "ports", each port
 controls 12 pins. Each port is mapped into memory and contains a data
@@ -283,16 +60,71 @@ structure that looks like this:
     	HW_UU UNUSED[0x1c00];		//padding to next GPIO bank (byte offsets 0x9000 to 0xffff)
     } GPIO_STRUCT;
 
-This definition is taken from the file `anykey/memory.h` and mirrors the
+This definition is taken from the file `anykey/memorymap.h` and mirrors the
 specification in the user manual, see. Chapter 9.4. 
 
 Every element in the struct above serves a specific function for
-writing, reading and configuring the port. For example
+writing, reading and configuring the port. For example: GPIO.data
+is a 32 bit value. The bottom 12 bits represent the state of the ports
+12 pins. If a pin is configured for OUTPUT, writing a value to these
+bits turns the pin on. If it's configured for INPUT the value of the
+pin's bit will be either one or zero depending on whether there is
+voltage applied to the pin.
 
 
 ## OUTPUT ... for now
 
-The blink example only needs output, so will concentrate on that for
-now.
+The blink example only needs output, so we will concentrate on that for
+now. The DIR member of the struct is responsible for configuring the pin
+as output or input. If the bit corresponding to the pin we want to
+use is set to 0 it's configured as output, if it's set to 1, the pin is
+an input pin. 
+
+Our processors  contains one of the GPIO_STRUCT (see above) memory
+regions for each of it's 4 ports. These start at memory location
+`0x50000000`, `anykey/memorymap.h` contains the following:
+
+    #define GPIO ((GPIO_STRUCT*)(0x50000000))
+
+which means: define an alias named GPIO which is a pointer (\*) to a
+region of memory starting at 0x50000000. The contents of the region
+correspong to the type GPIO_STRUCT. The way C works, a pointer to a
+region of memory can be used as an array, so if we want to access the
+configuration for the second port, we can do so via:
+
+     configuration_of_second_part = GPIO[1]
+
+The first element of an array has the number 0, so the second element
+has number 1 ...
+
+In order to configure third pin of the second port to output, the third
+bit of the DIR element of the second port configuration to 1:
+
+    GPIO[1]->DIR = (GPIO[1]->DIR) | (1 << 3)
+
+and in order to write a value (1) to the pin we need to set the
+corresponding bit in the DATA element to 1:
+
+    GPIO[1]->DATA = (GPIO[1]->DATA) | (1 << 3)
+
+All this is basically handled for you when you use the functions defined
+in `anykey/gpio.h` these functions are really just a wrapper to save you
+some typing, but it's important to know what is going on under the hood.
+
+For some of the pins of the Anykey, it's also important to set the
+function to PIO before using them, because by default they may be
+configured to provide a different functionality. We won't get into the
+bits and bytes, but the functions to do this are listed below:
+
+    Function             | Description                    | Example
+    any_gpio_set_dir     | set the direction of a pin     | any_gpio_set_dir(port, pin, OUTPUT)
+    any_gpio_write       | write 0 or 1 to a pin          | any_gpio_write(port, pin, true)
+    any_gpio_read        | read the value of an input pin | value = any_gpio_read(port, pin)
+    ANY_GPIO_SET_FUNCTION| configure function of a pin    | ANY_GPIO_SET_FUNCTION(port, pin, PIO, IOCON_IO_ADMODE_DIGITAL);
+
+
+
+
+
 
 
