@@ -2,8 +2,8 @@
 
 ## make, gcc
 
-Chances are, you already have these installed. In case you don't there
-are a number of options:
+Chances are, you already have these installed. Simply start your terminal and type in gcc; this should tell you your gcc-version if its already there. Also type in make – in case you have Xcode installed this would give you something like: No targets specified and no makefile found.  Stop.
+In case you don't there are a number of options:
 
 * install XCode via the AppStore
 * use macports:
@@ -44,8 +44,9 @@ version of the tools and the files aren't called
 ## Check out out the SDK
 
 Create a convenient working directory and check out the SDK
-
-     $ mkdir anykey; cd anykey
+		 $ cd pathToYourFolder
+     $ mkdir choose a Name, e.g. anykey
+		 $ cd anykey
      $ git clone https://github.com/anykey0xde/anykey-sdk.git
 
 ## make checksum and add it to your PATH
@@ -76,8 +77,8 @@ There should be a file called `firmware.bin` in the blink directory.
 This file needs to be copied onto the Anykey. Plug in your Anykey using
 a micro-USB cable. You need to reset the Anykey in order to make it show
 up as a "USB-Stick" in the Finder. To do this, hold down the PROGRAM
-button, press the RESET button and release the PROGRAM button. The LED
-should now glow softly and you will see a drive called `CRP DISABLED`
+button, press the RESET button, release it and then release the PROGRAM button. The LED
+should now glow softly and you will see a driver called `CRP DISABLED`
 in the Finder.
 
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
