@@ -98,7 +98,7 @@ to indicate what a series of bits is supposed to represent, e.g. uint8_t
 is a type ("_t") that is unsigned ("u") representing a number ("int")
 that is 8 bits long.
 
-|| Type     || Description        || Values|
+| Type      | Description         | Values|
 | uint8_t   | unsigned 8 bit type | 0 ... 255  |
 |  int8_t   | signed 8 bit type   | -128 ... 127 |
 | uint16_t  | unsigned 16 bit     | 0 ... 65,535  |
