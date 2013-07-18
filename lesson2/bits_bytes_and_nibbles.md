@@ -44,7 +44,7 @@ The value of the byte is the sum of the values corresponding to the set
 bits. In the example above: 16 + 4 + 2 + 1 = 23;
 
 If all bits are set, the value is 127 + 64 + 32 + 16 + 8 + 4 + 2 + 1 =
-256.
+255.
 
 To represent larger values you can use values cnosisting of more than
 one byte.
