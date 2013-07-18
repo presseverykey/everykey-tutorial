@@ -25,5 +25,5 @@ included in our project, but you need to compile it for your plattform (i.e. Win
 
 ## ARM C Compiler
 
-The firmware we're compiling isn't meant for your own computer, but will run on the anykey which speaks a "different language", the gcc that you also needs is able to translate programs for your PC. We need a compiler that can transform the C code into a language the anykey can understand.
+The firmware we're compiling isn't meant for your own computer, but will run on the anykey which speaks a "different language", the gcc that you also need is able to translate programs for your PC. We need a compiler that can transform the C code into a language the anykey can understand.
 
