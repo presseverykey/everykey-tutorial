@@ -97,14 +97,15 @@ representing the numbers -128 to 127. C defines "types" which are meant
 to indicate what a series of bits is supposed to represent, e.g. uint8_t
 is a type ("_t") that is unsigned ("u") representing a number ("int")
 that is 8 bits long.
-
-|| Type     || Description        || Values|
-| uint8_t   | unsigned 8 bit type | 0 ... 255  |
-|  int8_t   | signed 8 bit type   | -128 ... 127 |
-| uint16_t  | unsigned 16 bit     | 0 ... 65,535  |
-|  int116_t | signed 16 bit       | −32,768 ... 32,767 |
-| uint32_t  | unsigned 32 bit     | 0 ... 4,294,967,295 |
-|  int32_t  | signed 32 bit type  |  −2,147,483,648 ... 2,147,483,647 |
+    
+    |  Type     |  Description        |             Values                |
+    |-----------|---------------------|-----------------------------------|
+    | uint8_t   | unsigned 8 bit type |           0 ... 255               |
+    |  int8_t   | signed 8 bit type   |         -128 ... 127              |
+    | uint16_t  | unsigned 16 bit     |          0 ... 65,535             |
+    |  int116_t | signed 16 bit       |        −32,768 ... 32,767         |
+    | uint32_t  | unsigned 32 bit     |        0 ... 4,294,967,295        |
+    |  int32_t  | signed 32 bit type  |  −2,147,483,648 ... 2,147,483,647 |
 
 and so on... Basically a signed value can represent the values:
 
@@ -121,29 +122,141 @@ When a type represents a number, we can perform mathematical operations
 with it, using the operators (+, -, *, /) the star is the multiplication
 operator and the slash division.
 
-### Enough math, using values as a series of bits.
+### Logical Operation : Enough math, using values as a series of bits.
 
 Another class of operations that can be perform with values are
 "logical" operations:
 
-|| Operation ||  Operator || Name     || Description ||
-|  AND       |  * | logical and  | equals 1 if both values are one |
-|  OR        |  \| | logical or   | equals 1 if either value is one |
-|  XOR       |  ^ | exclusive or | equals 1 if one of the values is one |
-|  NOT       |  ~ | negation     | equals 1 if value is 0 and 0 if value is 1 |
+    | Operation  |  Operator |  Name        | Description                                |
+    |------------|-----------|--------------|--------------------------------------------|
+    |  AND       |  &        | logical and  | equals 1 if both values are one            |
+    |  OR        |  \|       | logical or   | equals 1 if either value is one            |
+    |  XOR       |  ^        | exclusive or | equals 1 if one of the values is one       |
+    |  NOT       |  ~        | negation     | equals 1 if value is 0 and 0 if value is 1 |
+    | SHIFT LEFT |  <<       | shift        | move the entire value left, filling up the new spaces with 0's|
+    | SHIFT RIGHT|  >>       | shift        |  ...                                       |
 
 You probably either know the table above, or it's not particularly
 helpful, some examples:
 
      AND two bytes together
-
+     (result = 3 & 137)
+     
+     bit num: 7 6 5 4  3 2 1 0
+     -------------------------
      byte 1 : 0 0 0 0  1 0 0 0
      byte 2 : 1 0 0 0  1 0 0 1
+     -------------------------
      result : 0 0 0 0  1 0 0 0
 
-Since only
+Since only both the bits at position 3 are set to one, that is the only
+bit set in the result.
+
+     OR two bytes together
+     ( result = 6 | 172 )
+
+     bit num: 7 6 5 4  3 2 1 0
+     -------------------------
+     byte 1 : 0 0 0 0  1 1 0 1
+     byte 2 : 1 0 1 0  1 1 0 0
+     -------------------------
+     result : 1 0 1 0  1 1 0 1
+
+Since one of each bits in position 7, 5, 3, 2 and 0 are set, those are
+the bits set in the result.
 
 
+     XOR two bytes together
+     (result = 5 ^ 173)
+
+     bit num: 7 6 5 4  3 2 1 0
+     -------------------------
+     byte 1 : 0 0 0 0  1 1 0 0
+     byte 2 : 1 0 1 0  1 1 0 1
+     -------------------------
+     result : 1 0 1 0  0 0 0 1
+
+For xor, only the bits in the result are set that correspond to bits
+set EITHER in the first or second operant. Positions 3 and 2 where the
+bits are set in BOTH operants are not set in the result.
+
+    NOT works with only one operand 
+    (result = ~5)
+    
+    bit num: 7 6 5 4  3 2 1 0
+    -------------------------
+    byte 1 : 0 0 0 0  1 1 0 0
+    -------------------------
+    result : 1 1 1 1  0 0 1 1
+
+Finally shift:
+
+    SHIFT left by 1 
+    ( result = 5 << 1 )
+
+    bit num: 7 6 5 4  3 2 1 0
+    -------------------------
+    byte 1 : 0 0 0 0  1 1 0 0
+    -------------------------
+    result : 0 0 0 1  1 0 0 0
+
+
+    SHIFT right by 2 
+    ( result = 5 >> 2 )
+
+    bit num: 7 6 5 4  3 2 1 0
+    -------------------------
+    byte 1 : 0 0 0 0  1 1 0 0
+    -------------------------
+    result : 0 0 0 0  0 0 1 1
+
+
+### Logical Operation Cookbook
+
+Why would you use these logical operations? On the one hand, these are
+the basic opertions that a computer can perform internally on electrical
+signals passing through transistor. You can use these operations for
+some mathematical trickery, e.g. shifting by one is the same as
+multiplying or dividing by two (try it ...).
+
+But for our typical purposes we would like to be able to set the values of
+individual bits and to check how individual bits are set. Below are
+common patterns to do this, we won't elaborate on them, try these out
+yourself
+
+#### Setting a bit (to 1)
+
+    value = value | ( 1 << bit_num)
+
+
+    Set bit 4
+
+    bit num: 7 6 5 4  3 2 1 0
+    -------------------------
+    byte 1 : 0 0 0 0  1 1 0 0
+    1<<4   : 0 0 0 1  0 0 0 0
+    -------------------------
+    result : 0 0 0 1  1 1 0 0
+
+
+#### Clearing a bit (set to 0)
+
+    value = value | ~( 1 << bit_num)
+
+
+    Set bit 4
+
+    bit num: 7 6 5 4  3 2 1 0
+    -------------------------
+    byte 1 : 0 0 0 1  1 1 0 0
+    ~(1<<4): 1 1 1 0  1 1 0 0
+    -------------------------
+    result : 0 0 0 0  1 1 0 0
+
+
+#### Check if a bit is set
+
+    is_set = (1 << bit_num) == (value & (1 << bit_num))
 
 Configuring a microcontroller usually involves writing to a memory
 location and manipulating values. These memory locations are accessed
