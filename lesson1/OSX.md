@@ -5,10 +5,11 @@
 Chances are, you already have these installed. Simply start your terminal and type in gcc; this should tell you your gcc-version if its already there. Also type in make – in case you have Xcode installed this would give you something like: No targets specified and no makefile found.  Stop.
 In case you don't there are a number of options:
 
-* install XCode via the AppStore
-* use macports:
+1. install XCode via the AppStore
+2. use macports:
   * `port` packages are named `gmake` and `gcc48`
-  * `homebrew` doesn't seem to support either gnu make or gcc ... go figure
+
+_Editors Note: `homebrew` doesn't seem to support either gnu make or gcc ... go figure_
 
 
 ## git
@@ -44,10 +45,12 @@ version of the tools and the files aren't called
 ## Check out out the SDK
 
 Create a convenient working directory and check out the SDK
-		 $ cd pathToYourFolder
-     $ mkdir choose a Name, e.g. anykey
-		 $ cd anykey
-     $ git clone https://github.com/anykey0xde/anykey-sdk.git
+
+    $ cd pathToYourFolder
+    $ mkdir choose a Name, e.g. anykey
+    $ cd anykey
+    $ git clone https://github.com/anykey0xde/anykey-sdk.git
+
 
 ## make checksum and add it to your PATH
 
@@ -67,7 +70,7 @@ make:
 
      $ export PATH=$PATH:`pwd`
 
-## Check everything works
+## Check if everything works
 
 Change into the `examples/blink` directory. Blinking LEDs are the
 HelloWorld of embedded programming! You should just be able to run
