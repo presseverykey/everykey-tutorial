@@ -42,6 +42,19 @@ You may need to change the commands above in case you're using a newer
 version of the tools and the files aren't called
 `gcc-arm-none-eabi-4_7-2013q2-20130614`
 
+### Further Options
+
+#### Homebrew
+
+There is no official homebrew formula for `arm-none-eabi-gcc`, but you can use the following tap to install the precompiled binaries:
+
+    $ brew tap superquadratic/anykey
+    $ brew install arm-none-eabi-gcc
+
+#### DIY
+If you prefer to spend an hour compiling everything from the sources, there's a quick rundown [here](http://blog.y3xz.com/blog/2012/10/07/setting-up-an-arm-eabi-toolchain-on-mac-os-x/).
+
+
 ## Check out out the SDK
 
 Create a convenient working directory and check out the SDK
