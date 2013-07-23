@@ -88,7 +88,7 @@ regions for each of it's 4 ports. These start at memory location
 
 which means: define an alias named GPIO which is a pointer (\*) to a
 region of memory starting at 0x50000000. The contents of the region
-correspong to the type GPIO_STRUCT. The way C works, a pointer to a
+corresponding to the type GPIO_STRUCT. The way C works, a pointer to a
 region of memory can be used as an array, so if we want to access the
 configuration for the second port, we can do so via:
 

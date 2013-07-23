@@ -2,7 +2,7 @@
 
 Since the low-level configuration of a microcontroller involves dealing
 with bits and bytes, we'd like to provide a short introduction of how to
-deal with low levl data structures.
+deal with low level data structures.
 
 The basic unit of memory in almost all microcontrollers is a byte which
 consists of 8 bits. Each bit can be 1 or 0, so one bit can represent two
@@ -46,20 +46,20 @@ bits. In the example above: 16 + 4 + 2 + 1 = 23;
 If all bits are set, the value is 127 + 64 + 32 + 16 + 8 + 4 + 2 + 1 =
 255.
 
-To represent larger values you can use values cnosisting of more than
+To represent larger values you can use values consisting of more than
 one byte.
 
-It's important to remember, though that this mapping of bits to numbers
+It's important to remember though that this mapping of bits to numbers
 is just an arbitray convention. A byte just represents 256 different
 values, whether these values represent the number 0-255 or 256 different
 colors is irrelevant. E.g. when configuring a microcontroller, the eight
 bits in a byte are mapped to pins and each bit indicates whether a pin
-is turned on or off. Another common thing that a series of (32 on our
-processor) bits can represent are locations in memory.
+is turned on or off. Another common representation is a series of bits (32 on our
+processor) representing the location of each byte of memory.
 
 ## Signed and unsigned
 
-Also a byte doesn't necessarily have to represent
+Furthermore. a byte doesn't necessarily have to represent
 the values 0-255, it could also be configured as a "signed" type,
 representing the numbers -128 to 127. C defines "types" which are meant
 to indicate what a series of bits is supposed to represent, e.g. uint8_t
@@ -95,7 +95,7 @@ operator and the slash division.
 
 ### Logical Operation : Enough math, using values as a series of bits.
 
-Another class of operations that can be perform with values are
+Another class of operations that can be performed with values are
 "logical" operations:
 
     | Operation  |  Operator |  Name        | Description                                |
@@ -185,7 +185,7 @@ Finally shift:
 ## Logical Operation Cookbook
 
 Why would you use these logical operations? On the one hand, these are
-the basic opertions that a computer can perform internally on electrical
+the basic operations that a computer can perform internally on electrical
 signals passing through transistor. You can use these operations for
 some mathematical trickery, e.g. shifting by one is the same as
 multiplying or dividing by two (try it ...).
@@ -260,7 +260,7 @@ byte `1000 1000` is equal to `0x88`. the "0x" in front of the numbers is
 used to indicate that we're dealing with hex.
 
 Once you get used to it, you begin to recognize some patterns: F is all
-four bits set, 8 only the first 7 all but the leftmost bit, 1 only the
+four bits set, 8 only the first bit,  7 all but the leftmost bit, 1 only the
 rightmost bit, etc.
 
     Top 7 hexadecimal digits to remember:
