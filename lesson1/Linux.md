@@ -21,7 +21,7 @@ convenient location:
 
 and add the `bin` directory to your `$path` variable:
 
-    $ export path=$path:`pwd`/gcc-arm-none-eabi-4_7-2013q2/arm-none-eabi/bin/
+    $ export PATH=$PATH:`pwd`/gcc-arm-none-eabi-4_7-2013q2/bin/
 
 you'll need to edit the $PATH variable everytime you start a new
 console, consider adding the path adjustment to your `.profile` ... 
