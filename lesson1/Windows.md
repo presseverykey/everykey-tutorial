@@ -17,6 +17,7 @@ Run the installer and make sure you install the following packages:
 * make
 * gcc
 * unzip
+* ca-certificates
 
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.gcc.png)
 
