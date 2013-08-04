@@ -16,8 +16,7 @@ convenient location:
 
     $ mkdir compiler
     $ cd compiler
-    $ tar -xjf
-    $download_location/gcc-arm-none-eabi-4_7-2013q2-20130614-linux.tar.bz2
+    $ tar -xjf ${download_location}/gcc-arm-none-eabi-4_7-2013q2-20130614-linux.tar.bz2
 
 and add the `bin` directory to your `$path` variable:
 
