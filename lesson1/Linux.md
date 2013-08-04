@@ -79,7 +79,10 @@ the firmware directly to the block device corresponding to the Anykey.
 If you use an automounter, run `mount` and you will see the key mounted as `CRP DISABLED`. 
 You'll also see the corresponding block device, called `/dev/<something>`, probably `/dev/sdb`.
 Unmount that drive `umount /dev/<something>` and finally copy the firmware using the following
-command: `dd if='firmware.bin of='/dev/<something>'`
+command: `dd if='firmware.bin of='/dev/<something>' seek=4`
+
+(for background on this, read this NXP 
+[Application Note](http://www.nxp.com/documents/application_note/AN10986.pdf), especially Chapter 4 )
 
 Finally, press RESET again to exit programming mode and the LED
 should be blinking.
