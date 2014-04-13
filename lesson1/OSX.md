@@ -2,8 +2,11 @@
 
 ## make, gcc
 
-Chances are, you already have these installed. Simply start your terminal and type in gcc; this should tell you your gcc-version if its already there. Also type in make – in case you have Xcode installed this would give you something like: No targets specified and no makefile found.  Stop.
-In case you don't there are a number of options:
+Chances are, you already have these installed. Simply start your
+terminal and type in gcc; this should tell you your gcc-version if its
+already there. Also type in make – in case you have Xcode installed this
+would give you something like: No targets specified and no makefile
+found.  Stop.  In case you don't there are a number of options:
 
 1. install XCode via the AppStore
 2. use macports:
@@ -62,7 +65,7 @@ Create a convenient working directory and check out the SDK
     $ cd pathToYourFolder
     $ mkdir choose a Name, e.g. everykey
     $ cd everykey
-    $ git clone https://github.com/anykey0xde/anykey-sdk.git
+    $ git clone https://github.com/presseverykey/everykey-sdk.git
 
 
 ## make checksum and add it to your PATH
@@ -71,7 +74,7 @@ Just one more thing... We need a small utility to adjust the firmware we
 compile for the LPC1343. Change into the `checksum` directory and run
 make:
 
-    $ cd everykey/anykey-sdk/checksum
+    $ cd everykey/everykey-sdk/checksum
     $ make
 
  Make sure the executable works, it should issue an error:
@@ -97,7 +100,7 @@ button, press the RESET button, release it and then release the PROGRAM button. 
 should now glow softly and you will see a drive called `CRP DISABLED`
 in the Finder.
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/reset_prg_buttons.png)
 
 
 Running `make mac-install` will copy the firmware to the Everykey and

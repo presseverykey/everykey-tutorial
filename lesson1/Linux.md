@@ -34,7 +34,7 @@ version of the tools and the files aren't called
 Create a convenient working directory and check out the SDK
 
      $ mkdir everykey; cd everykey
-     $ git clone https://github.com/anykey0xde/anykey-sdk.git
+     $ git clone https://github.com/presseverykey/everykey-sdk.git
 
 ## make checksum and add it to your PATH
 
@@ -42,7 +42,7 @@ Just one more thing... We need a small utility to adjust the firmware we
 compile for the LPC1343. Change into the `checksum` directory and run
 make:
 
-    $ cd everykey/anykey-sdk/checksum
+    $ cd everykey/everykey-sdk/checksum
     $ make
 
  Make sure the executable works, it should issue an error:
@@ -68,7 +68,7 @@ button, press the RESET button, release it and then release the PROGRAM button. 
 should now glow softly and you will see a drive called `CRP DISABLED`
 if you have an automounter.
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/reset_prg_buttons.png)
 
 
 Unfortunately, the Linux FAT driver is a bit pedantic and you can't use `cp` to 

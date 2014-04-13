@@ -9,7 +9,7 @@ what this means.. :)
 
 Go to [http://cygwin.com/intall.html] and download the `setup.exe`
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/download_cygwin.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/download_cygwin.png)
 
 Run the installer and make sure you install the following packages:
 
@@ -19,23 +19,23 @@ Run the installer and make sure you install the following packages:
 * unzip
 * ca-certificates
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.gcc.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/cygwin.gcc.png)
 
 Next start cygwin:
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.start.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/cygwin.start.png)
 
 and check out the everykey-sdk repository:
 
-    $ git clone https://github.com/anykey0xde/anykey-sdk.git
+    $ git clone https://github.com/presseverykey/everykey-sdk.git
 
 Switch into the sdk directory, then to the `checksum` subdirectory and run `make`
 
-![](https://raw.github.com/everykey0xde/tutorial/master/img/cygwin.step1.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/cygwin.step1.png)
 
 Finally, you need to add the checksum directory to your `$PATH` variable so it can be found:
 
-    a2800276@windowsxp ~/anykey-sdk/checksum
+    $ cd ~/everykey-sdk/checksum
     $ export PATH=$PATH:`pwd`
 
 ## Install the ARM compiler
@@ -46,13 +46,17 @@ Head to https://launchpad.net/gcc-arm-embedded/+download find the link to the do
 
 Run the installer and MAKE SURE you tick the "add path to environment variable" box.
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/win-arm-installer.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/win-arm-installer.png)
 
 ## If you're still not fed up with using Windows ...
 
-Ok, now for our dirty secret: we've used symbolic links in our examples and windows isn't too happy with those. Anytime we used symlinks, you'll need to actually copy the linked directory. Here's an exmaple:
+Ok, now for our dirty secret: we've used symbolic links in our examples
+and windows isn't too happy with those. Anytime we used symlinks, you'll
+need to actually copy the linked directory. Here's an exmaple:
 
-Go back into the SDK directory where you checkout out our stuff from there into the `examples/blink` directory. A directory listing will show a lot of symbolic links:
+Go back into the SDK directory where you checkout out our stuff from
+there into the `examples/blink` directory. A directory listing will show
+a lot of symbolic links:
 
     a2800276@windowsxp ~/anykey-sdk/examples/blink
     $ ls -l
@@ -102,7 +106,7 @@ button, press the RESET button and release the PROGRAM button. The LED
 should now glow softly and you will see a drive called `CRP DISABLED`
 in the Explorer.
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
+![](https://raw.github.com/presseverykey/everykey-tutorial/master/img/reset_prg_buttons.png)
 
 
 Running `make mac-install` will copy the firmware to the Everykey and
