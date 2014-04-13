@@ -1,4 +1,4 @@
-# Installing the Anykey Toolchain on OSX.
+# Installing the Everykey Toolchain on OSX.
 
 ## make, gcc
 
@@ -60,8 +60,8 @@ If you prefer to spend an hour compiling everything from the sources, there's a 
 Create a convenient working directory and check out the SDK
 
     $ cd pathToYourFolder
-    $ mkdir choose a Name, e.g. anykey
-    $ cd anykey
+    $ mkdir choose a Name, e.g. everykey
+    $ cd everykey
     $ git clone https://github.com/anykey0xde/anykey-sdk.git
 
 
@@ -71,7 +71,7 @@ Just one more thing... We need a small utility to adjust the firmware we
 compile for the LPC1343. Change into the `checksum` directory and run
 make:
 
-    $ cd anykey/anykey-sdk/checksum
+    $ cd everykey/anykey-sdk/checksum
     $ make
 
  Make sure the executable works, it should issue an error:
@@ -90,8 +90,8 @@ HelloWorld of embedded programming! You should just be able to run
 `make` and the firmware should be created.
 
 There should be a file called `firmware.bin` in the blink directory.
-This file needs to be copied onto the Anykey. Plug in your Anykey using
-a micro-USB cable. You need to reset the Anykey in order to make it show
+This file needs to be copied onto the Everykey. Plug in your Everykey using
+a micro-USB cable. You need to reset the Everykey in order to make it show
 up as a "USB-Stick" in the Finder. To do this, hold down the PROGRAM
 button, press the RESET button, release it and then release the PROGRAM button. The LED
 should now glow softly and you will see a drive called `CRP DISABLED`
@@ -100,7 +100,7 @@ in the Finder.
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
 
 
-Running `make mac-install` will copy the firmware to the Anykey and
+Running `make mac-install` will copy the firmware to the Everykey and
 unmount it. Now press RESET again to exit programming mode and the LED
 should be blinking.
 

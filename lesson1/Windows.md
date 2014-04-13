@@ -1,4 +1,4 @@
-# Installing the Anykey Toolchain on Windows.
+# Installing the Everykey Toolchain on Windows.
 
 ## Install cygwin ...
 
@@ -25,13 +25,13 @@ Next start cygwin:
 
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.start.png)
 
-and check out the anykey-sdk repository:
+and check out the everykey-sdk repository:
 
     $ git clone https://github.com/anykey0xde/anykey-sdk.git
 
 Switch into the sdk directory, then to the `checksum` subdirectory and run `make`
 
-![](https://raw.github.com/anykey0xde/tutorial/master/img/cygwin.step1.png)
+![](https://raw.github.com/everykey0xde/tutorial/master/img/cygwin.step1.png)
 
 Finally, you need to add the checksum directory to your `$PATH` variable so it can be found:
 
@@ -57,17 +57,17 @@ Go back into the SDK directory where you checkout out our stuff from there into 
     a2800276@windowsxp ~/anykey-sdk/examples/blink
     $ ls -l
     total 9
-    lrwxrwxrwx 1 a2800276 None   12 Jul 16 18:23 anykey -> ../../anykey
+    lrwxrwxrwx 1 a2800276 None   12 Jul 16 18:23 everykey -> ../../everykey
     lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 anypio.c -> ../../libs/anypio/anypio.c
     lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 anypio.h -> ../../libs/anypio/anypio.h  
-    lrwxrwxrwx 1 a2800276 None   23 Jul 16 18:23 lpc1343.ld -> ../../anykey/lpc1343.ld
+    lrwxrwxrwx 1 a2800276 None   23 Jul 16 18:23 lpc1343.ld -> ../../everykey/lpc1343.ld
     -rw-r--r-- 1 a2800276 None 3207 Jul 16 18:23 main.c
-    lrwxrwxrwx 1 a2800276 None   21 Jul 16 18:23 makefile -> ../../anykey/makefile
+    lrwxrwxrwx 1 a2800276 None   21 Jul 16 18:23 makefile -> ../../everykey/makefile
 
 delete them and copy the originals in their place:
 
-    $ rm anykey
-    $ cp -r ../../anykey .
+    $ rm everykey
+    $ cp -r ../../everykey .
     $ rm anypio.*
     $ cp ../../libs/anypio.* .
     ...
@@ -76,7 +76,7 @@ When you're done, the directory should look like this:
 
     $ ls -l
     total 20
-    drwxr-xr-x+ 1 a2800276 None    0 Jul 16 19:34 anykey
+    drwxr-xr-x+ 1 a2800276 None    0 Jul 16 19:34 everykey
     -rw-r--r--  1 a2800276 None 2319 Jul 16 19:00 anypio.c
     -rw-r--r--  1 a2800276 None 2495 Jul 16 19:00 anypio.h
     -rw-r--r--  1 a2800276 None 2183 Jul 16 19:31 lpc1343.ld
@@ -95,8 +95,8 @@ BTW: We're not happy with all the deleting and copying either to deal with symli
 ## Check everything works
 
 There should be a file called `firmware.bin` in the blink directory.
-This file needs to be copied onto the Anykey. Plug in your Anykey using
-a micro-USB cable. You need to reset the Anykey in order to make it show
+This file needs to be copied onto the Everykey. Plug in your Everykey using
+a micro-USB cable. You need to reset the Everykey in order to make it show
 up as a "USB-Stick" in the Finder. To do this, hold down the PROGRAM
 button, press the RESET button and release the PROGRAM button. The LED
 should now glow softly and you will see a drive called `CRP DISABLED`
@@ -105,7 +105,7 @@ in the Explorer.
 ![](https://raw.github.com/anykey0xde/tutorial/master/img/reset_prg_buttons.png)
 
 
-Running `make mac-install` will copy the firmware to the Anykey and
+Running `make mac-install` will copy the firmware to the Everykey and
 eject it. Now press RESET again to exit programming mode and the LED
 should be blinking.
 

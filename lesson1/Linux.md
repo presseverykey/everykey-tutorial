@@ -1,4 +1,4 @@
-# Installing the Anykey Toolchain on Linux.
+# Installing the Everykey Toolchain on Linux.
 
 ## make, gcc, git
 
@@ -33,7 +33,7 @@ version of the tools and the files aren't called
 
 Create a convenient working directory and check out the SDK
 
-     $ mkdir anykey; cd anykey
+     $ mkdir everykey; cd everykey
      $ git clone https://github.com/anykey0xde/anykey-sdk.git
 
 ## make checksum and add it to your PATH
@@ -42,7 +42,7 @@ Just one more thing... We need a small utility to adjust the firmware we
 compile for the LPC1343. Change into the `checksum` directory and run
 make:
 
-    $ cd anykey/anykey-sdk/checksum
+    $ cd everykey/anykey-sdk/checksum
     $ make
 
  Make sure the executable works, it should issue an error:
@@ -61,8 +61,8 @@ HelloWorld of embedded programming! You should just be able to run
 `make` and the firmware should be created.
 
 There should be a file called `firmware.bin` in the blink directory.
-This file needs to be copied onto the Anykey. Plug in your Anykey using
-a micro-USB cable. You need to reset the Anykey in order to make it show
+This file needs to be copied onto the Everkey. Plug in your Everkey using
+a micro-USB cable. You need to reset the Everkey in order to make it show
 up as a "USB-Stick" in the Finder. To do this, hold down the PROGRAM
 button, press the RESET button, release it and then release the PROGRAM button. The LED
 should now glow softly and you will see a drive called `CRP DISABLED`
@@ -73,7 +73,7 @@ if you have an automounter.
 
 Unfortunately, the Linux FAT driver is a bit pedantic and you can't use `cp` to 
 copy the firmware to the `CRP DISABLED` drive. Instead you need to use `dd` to write 
-the firmware directly to the block device corresponding to the Anykey.
+the firmware directly to the block device corresponding to the Everkey.
 
 If you use an automounter, run `mount` and you will see the key mounted as `CRP DISABLED`. 
 You'll also see the corresponding block device, called `/dev/<something>`, probably `/dev/sdb`.

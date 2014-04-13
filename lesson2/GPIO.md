@@ -40,7 +40,7 @@ If you're not familiar with bit operation, binary numbers and
 hexadecimal, please read the bits_bytes_and_nibbles.md chapter to brush
 up...
 
-The physical pins on the Anykey are organized into 4 "ports", each port
+The physical pins on the Everykey are organized into 4 "ports", each port
 controls 12 pins. Each port is mapped into memory and contains a data
 structure that looks like this:
 
@@ -143,7 +143,7 @@ pin.
 
 ## GPIO configuration
 
-For some of the pins of the Anykey, it's also important to set the
+For some of the pins of the Everykey, it's also important to set the
 function to PIO before using them, because by default they may be
 configured to provide a different functionality. We won't get into the
 bits and bytes, but the functions to do this are listed below:
@@ -160,11 +160,11 @@ bits and bytes, but the functions to do this are listed below:
 
 Input works very similarly to output. Before you read this section,
 please skim over the examples in `examples/lightbutton` and
-`examples/lightbutton_pro` that illustrate how to use the Anykey's built
+`examples/lightbutton_pro` that illustrate how to use the Everykey's built
 in button.
 
 The basic functionality is more or less the same than for output:
-configure the direction of the pin and then use `any_gpio_read` instaed
+configure the direction of the pin and then use `any_gpio_read` instead
 of `any_gpio_write`. 
 
 Input pins have more configuration options, though.
@@ -178,7 +178,7 @@ these resistors are for, please review that example.
 
 In essence, pull-up and -down resistors are meant to ensure that you are
 always able to read a clean, valid signal from a pin. For example: the
-buttons on the Anykey are connected to ground. If a button is pushed,
+buttons on the Everykey are connected to ground. If a button is pushed,
 you can read a logical '0'. But when the button is not pushed, the pin
 isn't connected to anything, it's said to be "floating". To avoid this
 situation, a large resistance is connected to the voltage supply,
