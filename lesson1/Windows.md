@@ -58,12 +58,12 @@ Go back into the SDK directory where you checkout out our stuff from
 there into the `examples/blink` directory. A directory listing will show
 a lot of symbolic links:
 
-    a2800276@windowsxp ~/anykey-sdk/examples/blink
+    a2800276@windowsxp ~/everykey-sdk/examples/blink
     $ ls -l
     total 9
     lrwxrwxrwx 1 a2800276 None   12 Jul 16 18:23 everykey -> ../../everykey
-    lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 anypio.c -> ../../libs/anypio/anypio.c
-    lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 anypio.h -> ../../libs/anypio/anypio.h  
+    lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 everypio.c -> ../../libs/everypio/everypio.c
+    lrwxrwxrwx 1 a2800276 None   26 Jul 16 18:23 everypio.h -> ../../libs/everypio/everypio.h  
     lrwxrwxrwx 1 a2800276 None   23 Jul 16 18:23 lpc1343.ld -> ../../everykey/lpc1343.ld
     -rw-r--r-- 1 a2800276 None 3207 Jul 16 18:23 main.c
     lrwxrwxrwx 1 a2800276 None   21 Jul 16 18:23 makefile -> ../../everykey/makefile
@@ -72,8 +72,8 @@ delete them and copy the originals in their place:
 
     $ rm everykey
     $ cp -r ../../everykey .
-    $ rm anypio.*
-    $ cp ../../libs/anypio.* .
+    $ rm everypio.*
+    $ cp ../../libs/everypio.* .
     ...
 
 When you're done, the directory should look like this:
@@ -81,8 +81,8 @@ When you're done, the directory should look like this:
     $ ls -l
     total 20
     drwxr-xr-x+ 1 a2800276 None    0 Jul 16 19:34 everykey
-    -rw-r--r--  1 a2800276 None 2319 Jul 16 19:00 anypio.c
-    -rw-r--r--  1 a2800276 None 2495 Jul 16 19:00 anypio.h
+    -rw-r--r--  1 a2800276 None 2319 Jul 16 19:00 everypio.c
+    -rw-r--r--  1 a2800276 None 2495 Jul 16 19:00 everypio.h
     -rw-r--r--  1 a2800276 None 2183 Jul 16 19:31 lpc1343.ld
     -rw-r--r--  1 a2800276 None 3207 Jul 16 18:23 main.c
     -rw-r--r--  1 a2800276 None 1619 Jul 16 19:34 makefile

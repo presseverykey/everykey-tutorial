@@ -11,7 +11,7 @@ To get started, switch into the `examples/blink` directory of the sdk
 you checked out in the last lesson, open the file `main.c` and read
 through the comment. Compile and run the code.
 
-The `blink` example uses some extra code (located under `libs/anypio`)
+The `blink` example uses some extra code (located under `libs/everypio`)
 that makes it trivial to turn pins on and off without having to write a
 lot of boiler plate code. Once you've had a look at `blink`, have a look
 at the example under `blink_pro`. This includes a bit of the necessary
@@ -60,7 +60,7 @@ structure that looks like this:
     	HW_UU UNUSED[0x1c00];		//padding to next GPIO bank (byte offsets 0x9000 to 0xffff)
     } GPIO_STRUCT;
 
-This definition is taken from the file `anykey/memorymap.h` and mirrors the
+This definition is taken from the file `everykey/memorymap.h` and mirrors the
 specification in the user manual, see. Chapter 9.4. 
 
 Every element in the struct above serves a specific function for
@@ -82,7 +82,7 @@ an input pin.
 
 Our processors  contains one of the GPIO_STRUCT (see above) memory
 regions for each of it's 4 ports. These start at memory location
-`0x50000000`, `anykey/memorymap.h` contains the following:
+`0x50000000`, `everykey/memorymap.h` contains the following:
 
     #define GPIO ((GPIO_STRUCT*)(0x50000000))
 
@@ -108,7 +108,7 @@ corresponding bit in the DATA element to 1:
     GPIO[1]->DATA = (GPIO[1]->DATA) | (1 << 3)
 
 All this is basically handled for you when you use the functions defined
-in `anykey/gpio.h` these functions are really just a wrapper to save you
+in `everykey/gpio.h` these functions are really just a wrapper to save you
 some typing, but it's important to know what is going on under the hood.
 
 ## Why PORT and PIN? Terminology.
@@ -148,11 +148,11 @@ function to PIO before using them, because by default they may be
 configured to provide a different functionality. We won't get into the
 bits and bytes, but the functions to do this are listed below:
 
-    Function             | Description                    | Example
-    any_gpio_set_dir     | set the direction of a pin     | any_gpio_set_dir(port, pin, OUTPUT)
-    any_gpio_write       | write 0 or 1 to a pin          | any_gpio_write(port, pin, true)
-    any_gpio_read        | read the value of an input pin | value = any_gpio_read(port, pin)
-    ANY_GPIO_SET_FUNCTION| configure function of a pin    | ANY_GPIO_SET_FUNCTION(port, pin, PIO, IOCON_IO_ADMODE_DIGITAL);
+    Function               | Description                    | Example
+    every.gpio_set_dir     | set the direction of a pin     | every.gpio_set_dir(port, pin, OUTPUT)
+    every.gpio_write       | write 0 or 1 to a pin          | every.gpio_write(port, pin, true)
+    every.gpio_read        | read the value of an input pin | value = every.gpio_read(port, pin)
+    EVERY_GPIO_SET_FUNCTION| configure function of a pin    | EVERY_GPIO_SET_FUNCTION(port, pin, PIO, IOCON_IO_ADMODE_DIGITAL);
 
 
 
@@ -164,8 +164,8 @@ please skim over the examples in `examples/lightbutton` and
 in button.
 
 The basic functionality is more or less the same than for output:
-configure the direction of the pin and then use `any_gpio_read` instead
-of `any_gpio_write`. 
+configure the direction of the pin and then use `every.gpio_read` instead
+of `every.gpio_write`. 
 
 Input pins have more configuration options, though.
 
@@ -196,10 +196,10 @@ resistor on the board:
 
 but this is not necessary, because our microprocessor is able to switch
 pull-ups and pull-downs interally. To configure them, use the macro
-`ANYPIO_SET_PULL` in `anykey/gpio.h`:
+`EVERYPIO_SET_PULL` in `everykey/gpio.h`:
 
     
-    ANY_GPIO_SET_PULL(PORT, PIN, <PULL-CONFIG>); 
+    EVERY_GPIO_SET_PULL(PORT, PIN, <PULL-CONFIG>); 
 
 the PULL-CONFIG parameter can have the following values:
 
